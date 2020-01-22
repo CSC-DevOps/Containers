@@ -107,7 +107,7 @@ If we worked on our script for several more years and took advantage of other ca
 
 ### Setup 
 
-### Create a headless micro VM with bakerx
+#### Create a headless micro VM with bakerx
 
 Pull an ubuntu bionic image and create a micro VM called, `docker0`.
 
@@ -116,7 +116,7 @@ bakerx pull cloud-images.ubuntu.com bionic
 bakerx run docker0 bionic
 ```
 
-### Install docker inside your VM.
+#### Install docker inside your VM.
 
 The recommended method for installing docker on ubuntu can be [found here](https://docs.docker.com/install/linux/docker-ee/ubuntu/#install-docker-ee-1).  But in the interest of time: :grimacing:
 
