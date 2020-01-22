@@ -54,9 +54,10 @@ ls
 rm HELLO.txt
 ```
 
-### Introducing overlay
+### Introducing overlay filesystem
 
 Create a new [container.sh](container.sh) file inside your micro VM and make it exectuable.
+This script will create a new snapshot of the filesystem everytime is it launched in order to run the container.
 
 ```bash
 #!/bin/ash
@@ -80,8 +81,6 @@ PS1="$nonce-# " chroot /tmp/$nonce/overlay /bin/busybox sh
 ```
 
 Using the overlay filesystem, we can keep our rootfs "read-only", while allowing new changes to be made. The read-only portion is denotated by the "lower" directory. The change states are maintained in the "upper" and "work" directories, and the merged/unified filesystem is available in the "overlay" directory.
-
-This script will create a new snapshot of the filesystem everytime is it launched in order to run the process.
 
 A short demo of the script illustrates our ability to perserve the rootfs each time we create a new container.
 
