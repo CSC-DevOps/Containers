@@ -222,11 +222,68 @@ We can see our image listed, now:
 docker images
 ```
 
-Now, let's use it to run `mvn`.
+Now, let's use it to run `mvn` to check our environment setup.
 
 ```bash
-docker run java11 mvn
+docker run java11 mvn --version
 ```
 
+### Understanding containers
 
+Look at all the containers you've created by running commands above.
 
+```
+docker ps -a 
+```
+
+The container "graveyard" contains all the dead containers that ran a process, then exited.
+If we want a container to stick around, we need it to run in daemon mode, but adding the `-d` arg. We also provide a name for easy reference.
+
+```
+docker run --name test-d -it -d java
+```
+
+Let's use an one-liner to write a file to our running container.
+
+```bash
+docker exec -it test-d script /dev/null -c "echo 'Hello' > foo.txt"
+```
+
+Make sure we can see change. Note we add `-t` to improve the output of `ls`:
+
+```bash
+docker exec -t test-d ls
+```
+
+Now, let's commit this to our image. Any new container will now have 'foo.txt' inside it.
+
+```bash
+docker commit test-d java11
+```
+
+We can confirm that new containers do indeed have 'foo.txt' inside:
+
+```bash
+$ docker run -t java11 ls
+bin   dev  foo.txt  lib    media  opt	root  sbin  sys  usr
+boot  etc  home     lib64  mnt	  proc	run   srv   tmp  var
+```
+
+### Reviewing principles
+
+Recall we want to maintain efficiency and isolation. Here is how Docker enables this.
+
+##### Images
+
+* A docker image contains a set of layers, which can be composed for efficient storage on the system.
+* An image can be based on other images (`FROM ubuntu:18.04`).
+* You can build your own images by running commands inside a Dockerfile. 
+* A base image is usually created with hand-crafted rootfs (`FROM scratch` ... `COPY /rootfs /`).
+* More advanced ways to build images, include using the [Builder pattern](https://matthiasnoback.nl/2017/04/docker-build-patterns/), for multi-staged builds.
+
+##### Containers
+
+* A container contains an overlay of the image's rootfs.
+* A container cannot generally access other processes, the host filesystem, or other resources. The entry point is PID 1. 
+* Containers are generally stateless, that is any change to a container has no effect on its image; however, you can commit a change to a new image.
+* A docker container only stays alive as long as there is an active process being run in it.
