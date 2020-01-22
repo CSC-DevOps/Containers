@@ -14,5 +14,9 @@ mount -t overlay -o lowerdir=$ROOTFS,upperdir=/tmp/$nonce/upper,workdir=/tmp/$no
 # Create symlinks in our container for convience.
 chroot /tmp/$nonce/overlay/ /bin/busybox --install -s
 
+# Example on how to mount the proc filesystem.
+# mkdir -p /tmp/$nonce/overlay/proc
+# mount -t proc none /tmp/$nonce/overlay/proc
+
 # Launch container with custom prompt in ash shell.
 PS1="$nonce-# " chroot /tmp/$nonce/overlay /bin/busybox sh

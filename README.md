@@ -87,7 +87,19 @@ A short demo of the script illustrates our ability to perserve the rootfs each t
 ![demo](imgs/simple-chroot.png)
 
 
+### Summary
 
+While we have demonstrated a very simple way to implement containers---there are several limitations with our implementation.
+
+* Preparing root file systems can be problematic. Can we do better than random wget scripts?
+* Keeping multiple root filesystems can be inefficient --- We are not taking advantage of common shared files.
+* Other resources of the host OS are not isolated, such as networking.
+* We may want to share and isolate other resources with the host. For example, if we mount the proc filesystem, we can kill any process on the system. Not good!
+
+  ```bash
+  mkdir -p /tmp/$nonce/overlay/proc
+  mount -t proc none /tmp/$nonce/overlay/proc
+  ```
 
 
 
