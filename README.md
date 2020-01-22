@@ -84,18 +84,7 @@ Using the overlay filesystem, we can keep our rootfs "read-only", while allowing
 
 A short demo of the script illustrates our ability to perserve the rootfs each time we create a new container.
 
-```
-nanobox:~# ./container.sh rootfs
-TWIYg-MJOP-# ls
-bin      linuxrc  sbin     usr
-TWIYg-MJOP-# touch FOO.txt
-TWIYg-MJOP-# ls
-FOO.txt  bin      linuxrc  sbin     usr
-TWIYg-MJOP-# exit
-nanobox:~# ./container.sh rootfs
-ZC4RCytZpg-# ls
-bin      linuxrc  sbin     usr
-```
+![demo](imgs/simple-chroot.png)
 
 
 
