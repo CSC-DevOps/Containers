@@ -137,15 +137,96 @@ docker run hello-world
 
 ### Playing with Docker
 
+Pull an ubuntu image.
+
+```
+$ docker pull ubuntu:18.04
+```
+
+Check the size of the images.
+
+```bash
+$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+ubuntu              18.04               ccc6e87d482b        6 days ago          64.2MB
+hello-world         latest              fce289e99eb9        12 months ago       1.84kB
+```
+
+Let's create a simple container.
+
+```bash
+docker run ubuntu:18.04 sh
+```
+
+Unfortunately, that doesn't quite do what we want, because a pseudo-tty allocated to the container, so we can use the terminal.
+
+```
+$ docker run -t ubuntu:18.04 sh
+# ls
+
+exit
+.exit
+^C
+```
+
+Unfortunately, that's still not enough. Docker isn't necessarily the most intuitive system, you see. You also need to allow input (`-i` Keep STDIN open even if not attached).
+
+```
+$ docker run -it ubuntu:18.04 sh
+```
+
+Finally, we can get to a terminal, and see we can run shell commands in our own private snapshot of the ubuntu image.
 
 
+```bash
+$ docker run -it ubuntu:18.04 sh
+# ls
+# rm -rf --no-preserve-root /
+# exit
+```
 
+Oh no, what have we done? Is everything okay?
 
+```bash
+$ docker run -it ubuntu:18.04 sh
+```
 
+### Building Images
 
+We can create our own images.
+Create a "Dockerfile" and place this content inside:
 
+```
+FROM ubuntu:18.04
 
+RUN apt-get -y update
 
+# update packages and install
+RUN apt-get install -y openjdk-11-jre-headless wget curl unzip
+
+RUN apt-get -y install git
+RUN apt-get -y install maven
+
+ENV JAVA_HOME /usr/lib/jvm/java-11-openjdk-amd64
+```
+
+Build the docker image, and name it "java11".
+
+```bash
+docker build -t java11 .
+```
+
+We can see our image listed, now:
+
+```bash
+docker images
+```
+
+Now, let's use it to run `mvn`.
+
+```bash
+docker run java11 mvn
+```
 
 
 
