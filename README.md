@@ -101,6 +101,50 @@ While we have demonstrated a very simple way to implement containers---however, 
   mount -t proc none /tmp/$nonce/overlay/proc
   ```
 
+## Introducing Docker containers.
+
+If we worked on our script for several more years and took advantage of other capabilities of the Linux kernel, such as cgroups and namespaces, we could overcome many of the limitations we saw with our homegrown containers. Thankfully, someone has done this work for us.
+
+### Setup 
+
+### Create a headless micro VM with bakerx
+
+Pull an ubuntu bionic image and create a micro VM called, `docker0`.
+
+```bash
+bakerx pull cloud-images.ubuntu.com bionic
+bakerx run docker0 bionic
+```
+
+### Install docker inside your VM.
+
+The recommended method for installing docker on ubuntu can be [found here](https://docs.docker.com/install/linux/docker-ee/ubuntu/#install-docker-ee-1).  But in the interest of time: :grimacing: :
+
+```
+curl -sSL https://get.docker.com/ | sh
+```
+
+After installation, it is recommended you allow docker to be run without needing sudo. **IMPORTANT** You'd need to restart your shell (exit and log back in) to see the changes reflected.
+
+```
+sudo usermod -aG docker $(whoami)
+```
+
+Verify you can run docker:
+```
+docker run hello-world
+```
+
+### Playing with Docker
+
+
+
+
+
+
+
+
+
 
 
 
