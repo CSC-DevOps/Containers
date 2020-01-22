@@ -118,7 +118,7 @@ bakerx run docker0 bionic
 
 ### Install docker inside your VM.
 
-The recommended method for installing docker on ubuntu can be [found here](https://docs.docker.com/install/linux/docker-ee/ubuntu/#install-docker-ee-1).  But in the interest of time: :grimacing: :
+The recommended method for installing docker on ubuntu can be [found here](https://docs.docker.com/install/linux/docker-ee/ubuntu/#install-docker-ee-1).  But in the interest of time: :grimacing:
 
 ```
 curl -sSL https://get.docker.com/ | sh
