@@ -269,6 +269,43 @@ bin   dev  foo.txt  lib    media  opt	root  sbin  sys  usr
 boot  etc  home     lib64  mnt	  proc	run   srv   tmp  var
 ```
 
+### Volumes
+
+Imagine you wanted to create a simple build script and run against an image. It could be incredible tedious to create a new image per project, just to add the build script. Furthermore, getting data *out* of a container could be unwieldy. Alternatively, we can use volumes, to share our filesystem of our host with a container.
+
+```
+docker run -v /home/vagrant/:/vol java11 ls -a /vol/
+```
+
+We should be able to see our host's directory home directory. Now, we can have a simple "escape hatch" to get data in and out of the container at the cost of losing true immutability. 
+
+### Build script demo
+
+In your host VM, create 'build.sh' and place the following inside:
+
+```bash
+git clone https://github.com/CSC-326/JSPDemo
+cd JSPDemo
+mvn compile -DskipTests -Dmaven.javadoc.skip=true
+```
+
+```
+chmod +x build.sh
+docker run -v /home/vagrant/:/vol java11 sh -c /vol/build.sh
+```
+
+We can confirm the code is greatly out of date and does not work with Java 11!
+```
+[INFO] 31 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  29.052 s
+[INFO] Finished at: 2020-01-22T22:06:57Z
+[INFO] ------------------------------------------------------------------------
+```
+
 ### Reviewing principles
 
 Recall we want to maintain efficiency and isolation. Here is how Docker enables this.
@@ -286,6 +323,8 @@ Recall we want to maintain efficiency and isolation. Here is how Docker enables 
 ##### Containers
 
 * A container contains an overlay of the image's rootfs.
-* A container cannot generally access other processes, the host filesystem, or other resources. The entry point is PID 1. 
 * Containers are generally stateless, that is any change to a container has no effect on its image; however, you can commit a change to a new image.
-* A docker container only stays alive as long as there is an active process being run in it.
+* A docker container only stays alive as long as there is an active process being run in it. You can keep a long running container by running a process that does not exist (a server), or running in daemon mode (`-d`).
+* A container cannot generally access other processes, the host filesystem, or other resources. The entry point is PID 1. 
+* While greatly useful, running programs inside containers can result in many different quirky behavior.
+
