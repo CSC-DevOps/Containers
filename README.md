@@ -273,6 +273,8 @@ boot  etc  home     lib64  mnt	  proc	run   srv   tmp  var
 
 Recall we want to maintain efficiency and isolation. Here is how Docker enables this.
 
+![docker-vs-vm](imgs/docker-vs-vm.png)
+
 ##### Images
 
 * A docker image contains a set of layers, which can be composed for efficient storage on the system.
