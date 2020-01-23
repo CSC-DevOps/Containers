@@ -84,8 +84,9 @@ Using the overlay filesystem, we can keep our rootfs "read-only", while allowing
 
 A short demo of the script illustrates our ability to perserve the rootfs each time we create a new container.
 
-![demo](imgs/simple-chroot.png)
-
+<p align="center">
+<img src="imgs/simple-chroot.png" alt="demo" height="250" />
+</p>
 
 ### Summary
 
