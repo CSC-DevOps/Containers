@@ -241,7 +241,7 @@ The container "graveyard" contains all the dead containers that ran a process, t
 If we want a container to stick around, we need it to run in daemon mode, but adding the `-d` arg. We also provide a name for easy reference.
 
 ```
-docker run --name test-d -it -d java
+docker run --name test-d -it -d ubuntu:18.04
 ```
 
 Let's use an one-liner to write a file to our running container.
@@ -259,13 +259,13 @@ docker exec -t test-d ls
 Now, let's commit this to our image. Any new container will now have 'foo.txt' inside it.
 
 ```bash
-docker commit test-d java11
+docker commit test-d ubuntu:18.04
 ```
 
 We can confirm that new containers do indeed have 'foo.txt' inside:
 
 ```bash
-$ docker run -t java11 ls
+$ docker run -t ubuntu:18.04 ls
 bin   dev  foo.txt  lib    media  opt	root  sbin  sys  usr
 boot  etc  home     lib64  mnt	  proc	run   srv   tmp  var
 ```
