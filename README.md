@@ -43,7 +43,7 @@ Install symlinks inside the rootfs
 chroot rootfs /bin/busybox --install -s
 ```
 
-```{type:'repl'}
+```bash | {type:'repl'}
 ```
 
 
