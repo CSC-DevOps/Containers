@@ -28,14 +28,30 @@ bakerx run containers alpine3.9-simple
 
 ### Prepare a simple rootfs with busybox.
 
+Our container will need several things, but the most essential will be a set of files and binaries, which we will call the _rootfs_. In our case, we'll be creating a minimal linux environment using binaries from the busybox distribution.
+
+Inside the virtual machine we've created, we will run the following steps.
+
+1. We will create the directory structure for the rootfs.
+
 ```bash
 mkdir -p rootfs/bin rootfs/sbin rootfs/usr/bin rootfs/usr/sbin
 ```
 
+2. We will download the busybox distribution.
+
 ```bash
 wget https://www.busybox.net/downloads/binaries/1.31.0-defconfig-multiarch-musl/busybox-i686 -O rootfs/bin/busybox
+```
+
+3. Then make the file executable.
+
+```bash
 chmod +x rootfs/bin/busybox
 ```
+
+> **BusyBox** combines tiny versions of many common UNIX utilities into a single small executable. It provides replacements for most of the utilities you usually find in GNU fileutils, shellutils, etc. The utilities in BusyBox generally have fewer options than their full-featured GNU cousins; however, the options that are included provide the expected functionality and behave very much like their GNU counterparts. BusyBox provides a fairly complete environment for any small or embedded system.
+
 
 Install symlinks inside the rootfs
 
