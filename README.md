@@ -65,6 +65,27 @@ chroot rootfs /bin/busybox --install -s
 chroot rootfs /bin/busybox ls -l /bin
 ```
 
+### Playing with container
+
+Let's start an interactive shell in the container.
+
+```bash
+PS1="C-$ " chroot rootfs /bin/busybox sh
+C-$ touch HELLO.txt
+C-$ ls
+C-$ exit
+```
+
+🤔 Hmm. There is a minor problem. We have not perserved the isolation property for our filesystem, as the filesystem is still mutable.
+
+You can see new file exists in the file system, and worse, we can delete and mess up things.
+
+```bash
+PS1="C-$ " chroot rootfs /bin/busybox sh
+ls
+rm HELLO.txt
+```
+
 ### Try it out
 
 📹 **Watch**: The video demo of these steps, then try to complete these steps on your own:
@@ -74,25 +95,7 @@ chroot rootfs /bin/busybox ls -l /bin
 ```
 
 
-### Playing with container
 
-Let's try it out!
-
-```bash
-PS1="C-$ " chroot rootfs /bin/busybox sh
-C-$ touch HELLO.txt
-C-$ ls
-C-$ exit
-```
-
-There is a minor problem. We have not perserved the isolation property for our filesystem, as the filesystem is still mutable.
-
-You can see new file exists in the file system, and worse, we can delete and mess up things.
-```bash
-PS1="C-$ " chroot rootfs /bin/busybox sh
-ls
-rm HELLO.txt
-```
 
 ### Introducing overlay filesystem
 
