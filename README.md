@@ -71,19 +71,6 @@ Let's start an interactive shell in the container.
 
 ```bash
 PS1="C-$ " chroot rootfs /bin/busybox sh
-C-$ touch HELLO.txt
-C-$ ls
-C-$ exit
-```
-
-🤔 Hmm. There is a minor problem. We have not perserved the isolation property for our filesystem, as the filesystem is still mutable.
-
-You can see new file exists in the file system, and worse, we can delete and mess up things.
-
-```bash
-PS1="C-$ " chroot rootfs /bin/busybox sh
-ls
-rm HELLO.txt
 ```
 
 ### Try it out
@@ -98,6 +85,25 @@ rm HELLO.txt
 
 
 ### Introducing overlay filesystem
+
+Let's do a simple test. What happens when we create a new file in the container?
+
+```bash
+PS1="C-$ " chroot rootfs /bin/busybox sh
+C-$ touch HELLO.txt
+C-$ ls
+C-$ exit
+```
+
+You can see new file exists in the file system, and worse, we can delete and mess up things.
+
+```bash
+PS1="C-$ " chroot rootfs /bin/busybox sh
+ls
+rm HELLO.txt
+```
+
+🤔 Hmm. There is a minor problem. We have not perserved the isolation property for our filesystem, as the filesystem is still mutable.
 
 Create a new [container.sh](container.sh) file inside your micro VM and make it exectuable.
 This script will create a new snapshot of the filesystem everytime is it launched in order to run the container.
