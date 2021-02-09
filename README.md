@@ -59,6 +59,12 @@ chmod +x rootfs/bin/busybox
 chroot rootfs /bin/busybox --install -s
 ```
 
+5. Try a test run of container in chroot.
+
+```
+chroot rootfs /bin/busybox ls -l /bin
+```
+
 ### Try it out
 
 📹 **Watch**: The video demo of these steps, then try to complete these steps on your own:
