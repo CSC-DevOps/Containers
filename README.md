@@ -1,22 +1,28 @@
 # Containers
 
-## Setup
+In this workshop, we will be exploring concepts related to containers in depth, first by manually constructing a container, and then by relating to those concepts features available in Docker.
 
-### Preqs
+## Preqs
 
-* Ensure you have `node --version >= 12.14`.
-* Ensure you have `bakerx --version >= 0.6.3`.
-* Ensure you have VirtualBox installed.
+You must be able to pass the `opunit` checks for virtualization, and `bakerx`, and `VirtualBox` installed.
 
-## Creating a simple container with chroot
+You can *import* this workshop as a notebook, or manually run the instructions in a terminal and editor.
 
-### Create a headless micro VM with bakerx
+```bash
+docable-server import https://github.com/CSC-DevOps/Containers
+```
+
+## A Simple Container
+
+We will create a simple container using `chroot`. 
 
 Pull an 3.9 alpine image and create a micro VM called, `con0`.
 
-```bash
-bakerx pull ottomatica/slim#images alpine3.9-simple
+```bash | {type: 'command'}
+bakerx pull alpine3.9-simple ottomatica/slim#images
+```
 
+```
 bakerx run con0 alpine3.9-simple
 ```
 
