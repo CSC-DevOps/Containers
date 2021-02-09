@@ -22,21 +22,24 @@ Pull an 3.9 alpine image and create a VM called, `containers`.
 bakerx pull alpine3.9-simple ottomatica/slim#images
 ```
 
-```bash | {type: 'command'}
+```bash | {type: 'command', stream: true, failed_when: 'exitCode!=0'}
 bakerx run containers alpine3.9-simple
 ```
 
 ### Prepare a simple rootfs with busybox.
 
-```bash
+```bash | {type: 'command'}
 mkdir -p rootfs/bin rootfs/sbin rootfs/usr/bin rootfs/usr/sbin
+```
 
+```bash | {type: 'command'}
 wget https://www.busybox.net/downloads/binaries/1.31.0-defconfig-multiarch-musl/busybox-i686 -O rootfs/bin/busybox
 chmod +x rootfs/bin/busybox
 ```
 
 Install symlinks inside the rootfs
-```bash
+
+```bash | {type: 'command'}
 chroot rootfs /bin/busybox --install -s
 ```
 
