@@ -4,7 +4,7 @@ In this workshop, we will be exploring concepts related to containers in depth, 
 
 ## Preqs
 
-You must be able to pass the `opunit` checks for virtualization, and `bakerx`, and `VirtualBox` installed.
+You must be able to pass the `opunit` checks for virtualization, and have `bakerx`, and `VirtualBox` installed.
 
 You can *import* this workshop as a notebook, or manually run the instructions in a terminal and editor.
 
@@ -16,14 +16,14 @@ docable-server import https://github.com/CSC-DevOps/Containers
 
 We will create a simple container using `chroot`. 
 
-Pull an 3.9 alpine image and create a micro VM called, `con0`.
+Pull an 3.9 alpine image and create a VM called, `containers`.
 
 ```bash | {type: 'command'}
 bakerx pull alpine3.9-simple ottomatica/slim#images
 ```
 
-```
-bakerx run con0 alpine3.9-simple
+```bash | {type: 'command'}
+bakerx run containers alpine3.9-simple
 ```
 
 ### Prepare a simple rootfs with busybox.
