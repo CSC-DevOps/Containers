@@ -53,11 +53,16 @@ chmod +x rootfs/bin/busybox
 > **BusyBox** combines tiny versions of many common UNIX utilities into a single small executable. It provides replacements for most of the utilities you usually find in GNU fileutils, shellutils, etc. The utilities in BusyBox generally have fewer options than their full-featured GNU cousins; however, the options that are included provide the expected functionality and behave very much like their GNU counterparts. BusyBox provides a fairly complete environment for any small or embedded system.
 
 
-Install symlinks inside the rootfs
+4. Install symlinks inside the rootfs.
 
 ```bash
 chroot rootfs /bin/busybox --install -s
 ```
+
+### Try it out
+
+📹 **Watch**: The video demo of these steps, then try to complete these steps on your own:
+
 
 ```bash | {type:'repl'}
 ```
