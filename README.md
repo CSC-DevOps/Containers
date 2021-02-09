@@ -28,20 +28,24 @@ bakerx run containers alpine3.9-simple
 
 ### Prepare a simple rootfs with busybox.
 
-```bash | {type: 'command'}
+```bash
 mkdir -p rootfs/bin rootfs/sbin rootfs/usr/bin rootfs/usr/sbin
 ```
 
-```bash | {type: 'command'}
+```bash
 wget https://www.busybox.net/downloads/binaries/1.31.0-defconfig-multiarch-musl/busybox-i686 -O rootfs/bin/busybox
 chmod +x rootfs/bin/busybox
 ```
 
 Install symlinks inside the rootfs
 
-```bash | {type: 'command'}
+```bash
 chroot rootfs /bin/busybox --install -s
 ```
+
+```{type:'repl'}
+```
+
 
 ### Playing with container
 
