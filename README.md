@@ -173,6 +173,7 @@ bakerx run docker-vm focal
 
 📹 **Watch**: The video demo of these steps, then try to complete these steps on your own:
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kSHzOFiGmIU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 The recommended method for installing docker on ubuntu can be [found here](https://docs.docker.com/install/linux/docker-ee/ubuntu/#install-docker-ee-1).  But in the interest of time: 😬
