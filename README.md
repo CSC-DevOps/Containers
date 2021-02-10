@@ -14,6 +14,10 @@ docable-server import https://github.com/CSC-DevOps/Containers
 
 ## A Simple Container
 
+📹 **Watch**: The video demo of these steps, then try to complete these steps on your own:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/B0bgvC_N3CM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 We will create a simple container using `chroot`. 
 
 Pull an 3.9 alpine image and create a VM called, `containers`.
@@ -73,18 +77,17 @@ Let's start an interactive shell in the container.
 PS1="C-$ " chroot rootfs /bin/busybox sh
 ```
 
-### Try it out
-
-📹 **Watch**: The video demo of these steps, then try to complete these steps on your own:
-
+Try these steps on your own:
 
 ```bash | {type:'repl'}
 ```
 
 
+## Introducing overlay filesystem
 
+📹 **Watch**: The video demo of these steps, then try to complete these steps on your own:
 
-### Introducing overlay filesystem
+<iframe width="560" height="315" src="https://www.youtube.com/embed/g01o1LgbY44" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Let's do a simple test. What happens when we create a new file in the container?
 
@@ -157,18 +160,22 @@ If we worked on our script for several more years and took advantage of other ca
 
 ### Setup 
 
-#### Create a headless micro VM with bakerx
+#### Create a headless VM with bakerx
 
-Pull an ubuntu bionic image and create a micro VM called, `docker0`.
+Pull an ubuntu focal image and create a VM called, `docker-vm`.
 
 ```bash
-bakerx pull cloud-images.ubuntu.com bionic
-bakerx run docker0 bionic
+bakerx pull focal cloud-images.ubuntu.com
+bakerx run docker-vm focal
 ```
 
 #### Install docker inside your VM.
 
-The recommended method for installing docker on ubuntu can be [found here](https://docs.docker.com/install/linux/docker-ee/ubuntu/#install-docker-ee-1).  But in the interest of time: :grimacing:
+📹 **Watch**: The video demo of these steps, then try to complete these steps on your own:
+
+
+
+The recommended method for installing docker on ubuntu can be [found here](https://docs.docker.com/install/linux/docker-ee/ubuntu/#install-docker-ee-1).  But in the interest of time: 😬
 
 ```
 curl -sSL https://get.docker.com/ | sh
@@ -183,6 +190,9 @@ sudo usermod -aG docker $(whoami)
 Verify you can run docker:
 ```
 docker run hello-world
+```
+
+```bash | {type:'repl'}
 ```
 
 ### Playing with Docker
@@ -241,6 +251,8 @@ Oh no, what have we done? Is everything okay?
 $ docker run -it ubuntu:18.04 sh
 ```
 
+
+
 ### Building Images
 
 We can create our own images.
@@ -276,6 +288,9 @@ Now, let's use it to run `mvn` to check our environment setup.
 
 ```bash
 docker run java11 mvn --version
+```
+
+```bash | {type:'repl'}
 ```
 
 ### Understanding containers
@@ -354,6 +369,9 @@ We can confirm the code is greatly out of date and does not work with Java 11!
 [INFO] Total time:  29.052 s
 [INFO] Finished at: 2020-01-22T22:06:57Z
 [INFO] ------------------------------------------------------------------------
+```
+
+```bash | {type:'repl'}
 ```
 
 ### Reviewing principles
